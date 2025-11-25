@@ -2,7 +2,7 @@
 
 ### [arXiv](PUT_ARXIV_LINK_HERE) | [BibTeX](#citation) | [Project Page](https://thaoshibe.github.io/relsim/) | [Video]()
 
-| <video src="https://raw.githubusercontent.com/thaoshibe/thaoshibe.github.io/main/relsim/images/animated-teaser-website.mp4" autoplay loop muted playsinline></video> |
+| <video src="https://thaoshibe.github.io/relsim/images/peach-earth.png" autoplay loop muted playsinline></video> |
 |:--:|
 | *We introduce a new visual similarity notion — relational visual similarity (relsim) — which captures the internal relational logic of a scene rather than its surface appearance.* |
 
