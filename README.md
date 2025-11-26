@@ -21,25 +21,30 @@
 
 ---
 
-🔗 Jump to: [Requirements](#requirements) | [Usage](#usage) | [📁 Data](#data) | [BibTeX](#citation) |
+🔗 Jump to: [Requirements](#requirements) | [Usage](#usage) | [🫥 Anonymous Captioning Model](#anonymousmodel) | [📁 Data](#data) | [BibTeX](#citation) |
 
-# Usage
+# Usage <a name="anonymousmodel"></a>
+
+Given two images, you can compute their relational visual similarity like this:
 
 
-# Anonymous Caption Model
+# 🫥 Anonymous Caption Model <a name="anonymousmodel"></a>
 
 The pretrained anonymous caption model (Qwen-VL-2.5 7B) is provided in [./anonymous_caption](./anonymous_caption/).  
 This model is trained on a limited number of seed groups and their corresponding generated captions (you can see the training data [here](https://thaoshibe.github.io/relsim/data_viewer/seed_groups.html)).
 
-```
+```python
 python anonymous_caption/anonymous_caption.py # this will run on default test image
+python anonymous_caption/anonymous_caption.py --image_path $PATH_TO_IMAGE_OR_IMAGE_FOLDER # run on your own images
 
-python anonymous_caption/anonymous_caption.py --image_path $PATH_TO_IMAGE_OR_IMAGE_FOLDER
+python anonymous_caption/anonymous_caption.py --help # if you need to see all arguments
 ```
 
-| Image | Generated Captions (Different run) |
+Here is example of the generated captions with different runs.
+| Input Image | Generated Captions (Different run) |
 |-----|-------|
-| <img src="./anonymous_caption/mam.jpg" height="200"> | Run 1: "Curious {Animal} peering out from behind a {Object}."<br> Run 2: "Curious {Animal} peeking out from behind the {Object} in an unexpected and playful way."<br> Run 3: "Curious {Cat} looking through a {Doorway} into the {Room}."<br> Run 4: "A curious {Animal} peeking from behind a {Barrier}."<br> Run 5: "A {Cat} peeking out from behind a {Door} with curious eyes."<br>... |
+| <img src="./anonymous_caption/mam.jpg" height="150"> | `python anonymous_caption/anonymous_caption.py --image_path anonymous_caption/mam.jpg`<br>Run 1: "Curious {Animal} peering out from behind a {Object}."<br> Run 2: "Curious {Animal} peeking out from behind the {Object} in an unexpected and playful way."<br> Run 3: "Curious {Cat} looking through a {Doorway} into the {Room}."<br> Run 4: "A curious {Animal} peeking from behind a {Barrier}."<br> Run 5: "A {Cat} peeking out from behind a {Door} with curious eyes."<br>... |
+| <img src='./anonymous_caption/bo.jpg' height="150"> | `python anonymous_caption/anonymous_caption.py --image_path anonymous_caption/bo.jpg`<br>Run 1: "Animals with {Leaf} artfully placed on their {Head}."<br> Run 2: "A {Dog} with a {Leaf} delicately placed on its head."<br> Run 3: "A {Dog} with a {Leaf} artfully placed on its head."<br> Run 4: "A {Dog} with a {Leaf} delicately placed on their head, representing the beauty of {Season}."<br> Run5: "Animals adorned with {Leaf} in a {Seasonal} setting."<br> ...| 
 
 > ⚠️ The anonymous caption can definerly can be improve... Open challengges [THAO FILL IN HERE]
 
@@ -49,7 +54,7 @@ python anonymous_caption/anonymous_caption.py --image_path $PATH_TO_IMAGE_OR_IMA
 
 | Dataset name | Short description  | JSON file | 🔍 Data viewer |
 |--------------|-----------------|------------|------------|
-| seed-groups | Use to train the anonymous captioning model | [seed_group.json](./data/seed_group.json) | [See Seed Groups Dataset](https://thaoshibe.github.io/relsim/data_viewer/seed_groups.html) |
+| seed-groups <a href="https://huggingface.co/datasets/thaoshibe/seed-groups"><img src="https://img.shields.io/badge/🤗-Dataset-yellow" alt="HuggingFace Dataset"></a> | Use to train the anonymous captioning model | [seed_group.json](./data/seed_group.json) | [See Seed Groups Dataset](https://thaoshibe.github.io/relsim/data_viewer/seed_groups.html) |
 | anonymous-captions-114k <a href="https://huggingface.co/datasets/thaoshibe/anonymous-captions-114k"><img src="https://img.shields.io/badge/🤗-Dataset-yellow" alt="HuggingFace Dataset"></a> | Use to train the relational similarity model | [anonymous_captions_train.jsonl](./data/anonymous_captions_train.jsonl), [anonymous_captions_test.jsonl](./data/anonymous_captions_test.jsonl)| [See Anonymous Captions Dataset](https://thaoshibe.github.io/relsim/data_viewer/anonymous_captions.html) |
 
 Each image will be given by their corresponding Image URL. Please see the json files in [./data](./data).
