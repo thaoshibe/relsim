@@ -21,7 +21,27 @@
 
 ---
 
-🔗 Jump to: [Requirements](#requirements) | [Usage](#usage) | [📁 Data](#data) | [BibTeX](#bibtex) |
+🔗 Jump to: [Requirements](#requirements) | [Usage](#usage) | [📁 Data](#data) | [BibTeX](#citation) |
+
+# Usage
+
+
+# Anonymous Caption Model
+
+The pretrained anonymous caption model (Qwen-VL-2.5 7B) is provided in [./anonymous_caption](./anonymous_caption/).  
+This model is trained on a limited number of seed groups and their corresponding generated captions (you can see the training data [here](https://thaoshibe.github.io/relsim/data_viewer/seed_groups.html)).
+
+```
+python anonymous_caption/anonymous_caption.py # this will run on default test image
+
+python anonymous_caption/anonymous_caption.py --image_path $PATH_TO_IMAGE_OR_IMAGE_FOLDER
+```
+
+| Image | Generated Captions (Different run) |
+|-----|-------|
+| <img src="./anonymous_caption/mam.jpg" height="200"> | Run 1: "Curious {Animal} peering out from behind a {Object}."<br> Run 2: "Curious {Animal} peeking out from behind the {Object} in an unexpected and playful way."<br> Run 3: "Curious {Cat} looking through a {Doorway} into the {Room}."<br> Run 4: "A curious {Animal} peeking from behind a {Barrier}."<br> Run 5: "A {Cat} peeking out from behind a {Door} with curious eyes."<br>... |
+
+> ⚠️ The anonymous caption can definerly can be improve... Open challengges [THAO FILL IN HERE]
 
 # 📁 Data <a name="data"></a>
 
@@ -29,7 +49,7 @@
 
 | Dataset name | Short description  | JSON file | 🔍 Data viewer |
 |--------------|-----------------|------------|------------|
-| seed-groups <a href="https://huggingface.co/datasets/thaoshibe/anonymous-captions-114k"><img src="https://img.shields.io/badge/🤗-Dataset-yellow" alt="HuggingFace Dataset"></a> | Use to train the anonymous captioning model | [seed_group.json](./data/seed_group.json) | [See Seed Groups Dataset](https://thaoshibe.github.io/relsim/data_viewer/seed_groups.html) |
+| seed-groups | Use to train the anonymous captioning model | [seed_group.json](./data/seed_group.json) | [See Seed Groups Dataset](https://thaoshibe.github.io/relsim/data_viewer/seed_groups.html) |
 | anonymous-captions-114k <a href="https://huggingface.co/datasets/thaoshibe/anonymous-captions-114k"><img src="https://img.shields.io/badge/🤗-Dataset-yellow" alt="HuggingFace Dataset"></a> | Use to train the relational similarity model | [anonymous_captions_train.jsonl](./data/anonymous_captions_train.jsonl), [anonymous_captions_test.jsonl](./data/anonymous_captions_test.jsonl)| [See Anonymous Captions Dataset](https://thaoshibe.github.io/relsim/data_viewer/anonymous_captions.html) |
 
 Each image will be given by their corresponding Image URL. Please see the json files in [./data](./data).
@@ -39,10 +59,12 @@ You can increase MAX_WORKER to speed up the download or reduce it depending on y
 To download, please run this the [data/download_data.sh](./data/download_data.sh)
 
 ```
-git clone https://github.com/thaoshibe/relsim.git        #clone the repo if you haven't do that
+# download dataset
+
+git clone https://github.com/thaoshibe/relsim.git #clone the repo if you haven't do that
 cd relsim
 
-bash data/download_data.sh      # this script will download all dataset
+bash data/download_data.sh # this script will download all dataset
 ```
 
 ## Disclaimer
