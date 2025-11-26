@@ -1,0 +1,74 @@
+# WandB Configuration
+wandb:
+  project: "anonymous-caption-qwen2.5-vl"
+  enabled: true
+
+# Model Configuration
+model:
+  name: "Qwen/Qwen2.5-VL-7B-Instruct"
+  torch_dtype: "auto"
+  device_map: "auto"
+
+# LoRA Configuration
+lora:
+  r: 16
+  lora_alpha: 32
+  target_modules: ["q_proj", "v_proj"]
+  lora_dropout: 0.05
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+# Data Configuration
+data: # test = train right now because we don't have a good way to measure the performance right now. choosen ckpt is based on qualitative evaluation.
+  train_json: "./seed-groups/seed_group.json"
+  test_json: "./seed-groups/seed_group.json"
+  train_image_folder: "./seed-groups/images/"
+  test_image_folder: "./seed-groups/images/"
+  
+# Image Processing
+image:
+  target_size: [448, 448]  # [width, height]
+  
+# Training Arguments
+training:
+  output_dir: "./ckpt/"
+  per_device_train_batch_size: 32
+  gradient_accumulation_steps: 1
+  learning_rate: 2.0e-4
+  num_train_epochs: 50
+  warmup_steps: 50
+  logging_steps: 1
+  logging_first_step: true
+  save_strategy: "steps"
+  save_steps: 100
+  save_total_limit: null
+  eval_strategy: "no"
+  fp16: true
+  
+# Generation Settings
+generation:
+  max_new_tokens: 128
+  do_sample: false
+  temperature: 1.0
+  
+# Evaluation Settings
+evaluation:
+  interval: 50  # Evaluate every N steps
+  sentence_transformer_model: "all-MiniLM-L6-v2"
+
+# Prompt Template
+prompt:
+  anonymous_captioning: |
+    You are given a single image.
+    Carefully analyze it to understand its underlying logic, layout, structure, or creative concept. Then generate a single, reusable anonymous caption that could describe any image following the same concept.
+    The caption must:
+    - Fully capture the general logic or analogy of the image.
+    - Include placeholders (e.g., {Object}, {Word}, {Character}, {Meaning}, {Color}, etc.) wherever variations can occur.
+    - Be concise and standalone.
+    Important: Only output the anonymous caption. Do not provide any explanations or additional text.
+
+# Miscellaneous
+misc:
+  seed: 42
+  shuffle_data: true
+

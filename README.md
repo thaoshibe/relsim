@@ -21,32 +21,65 @@
 
 ---
 
-🔗 Jump to: [Requirements](#requirements) | [Usage](#usage) | [🫥 Anonymous Captioning Model](#anonymousmodel) | [📁 Data](#data) | [BibTeX](#citation) |
+🔗 Jump to: [Requirements](#requirements) | [🛠️ Usage](#usage) | [🫥 Anonymous Captioning Model](#anonymousmodel) | [📁 Data](#data) | [BibTeX](#citation) |
 
-# Usage <a name="anonymousmodel"></a>
+# 🛠️ Usage <a name="usage"></a>
 
 Given two images, you can compute their relational visual similarity like this:
 
 
 # 🫥 Anonymous Caption Model <a name="anonymousmodel"></a>
 
-The pretrained anonymous caption model (Qwen-VL-2.5 7B) is provided in [./anonymous_caption](./anonymous_caption/).  
+> *Anonymous captions are image captions that do not refer to specific visible objects but instead capture the relational logic conveyed by the image.*
+
+The pretrained anonymous caption model (Qwen-VL-2.5 7B) is provided in [./anonymous_caption](./anonymous_caption/).
 This model is trained on a limited number of seed groups and their corresponding generated captions (you can see the training data [here](https://thaoshibe.github.io/relsim/data_viewer/seed_groups.html)).
 
-```python
-python anonymous_caption/anonymous_caption.py # this will run on default test image
-python anonymous_caption/anonymous_caption.py --image_path $PATH_TO_IMAGE_OR_IMAGE_FOLDER # run on your own images
+<br>
 
-python anonymous_caption/anonymous_caption.py --help # if you need to see all arguments
+```python
+# run on default test image (mam.jpg)
+python anonymous_caption/anonymous_caption.py
+
+# run on your own images
+python anonymous_caption/anonymous_caption.py --image_path $PATH_TO_IMAGE_OR_IMAGE_FOLDER
+
+# if you need to see all arguments (e.g., batch size)
+python anonymous_caption/anonymous_caption.py --help
 ```
 
 Here is example of the generated captions with different runs.
-| Input Image | Generated Captions (Different run) |
+| Input image | Generated captions (Different run) |
 |-----|-------|
-| <img src="./anonymous_caption/mam.jpg" height="150"> | `python anonymous_caption/anonymous_caption.py --image_path anonymous_caption/mam.jpg`<br>Run 1: "Curious {Animal} peering out from behind a {Object}."<br> Run 2: "Curious {Animal} peeking out from behind the {Object} in an unexpected and playful way."<br> Run 3: "Curious {Cat} looking through a {Doorway} into the {Room}."<br> Run 4: "A curious {Animal} peeking from behind a {Barrier}."<br> Run 5: "A {Cat} peeking out from behind a {Door} with curious eyes."<br>... |
-| <img src='./anonymous_caption/bo.jpg' height="150"> | `python anonymous_caption/anonymous_caption.py --image_path anonymous_caption/bo.jpg`<br>Run 1: "Animals with {Leaf} artfully placed on their {Head}."<br> Run 2: "A {Dog} with a {Leaf} delicately placed on its head."<br> Run 3: "A {Dog} with a {Leaf} artfully placed on its head."<br> Run 4: "A {Dog} with a {Leaf} delicately placed on their head, representing the beauty of {Season}."<br> Run5: "Animals adorned with {Leaf} in a {Seasonal} setting."<br> ...| 
+| <img src="./anonymous_caption/mam.jpg" height="200"> | Example: `python anonymous_caption/anonymous_caption.py --image_path anonymous_caption/mam.jpg`<br>Run 1: "Curious {Animal} peering out from behind a {Object}."<br> Run 2: "Curious {Animal} peeking out from behind the {Object} in an unexpected and playful way."<br> Run 3: "Curious {Cat} looking through a {Doorway} into the {Room}."<br> Run 4: "A curious {Animal} peeking from behind a {Barrier}."<br> Run 5: "A {Cat} peeking out from behind a {Door} with curious eyes."<br>... |
+| <img src='./anonymous_caption/bo.jpg' height="200"> | Example: `python anonymous_caption/anonymous_caption.py --image_path anonymous_caption/bo.jpg`<br>Run 1: "Animals with {Leaf} artfully placed on their {Head}."<br> Run 2: "A {Dog} with a {Leaf} delicately placed on its head."<br> Run 3: "A {Dog} with a {Leaf} artfully placed on its head."<br> Run 4: "A {Dog} with a {Leaf} delicately placed on their head, representing the beauty of {Season}."<br> Run5: "Animals adorned with {Leaf} in a {Seasonal} setting."<br> ...| 
 
-> ⚠️ The anonymous caption can definerly can be improve... Open challengges [THAO FILL IN HERE]
+> You are more than welcome to help improve the anonymous caption model! The current model may hallucinate or produce incorrect results, and sometimes it may generate captions that are not "anonymous enough"...
+
+For your convenience, a snapshot of the anonymous caption model is shown below. Please check [./anonymous_caption/config.yaml](./anonymous_caption/config.yaml) for config details.
+
+```
+# suppose that you are in the repo
+
+# (optional) install git lfs if you don't have
+sudo apt update
+sudo apt install git-lfs
+git lfs install
+
+# export HF_TOKEN='your_api_key_here'
+# export WANDB_API_KEY='your_api_key_here'
+
+# download the training data
+cd anonymous_caption
+git clone https://huggingface.co/datasets/thaoshibe/seed-groups
+pip install -r requirements.txt
+# run train
+python anonymous_caption_train.py
+```
+
+If you choose to log to wandb, your wandb should look like this
+<br><img src='./anonymous_caption/wandb_snapshot.png' height="300">
+<br> And the output should look like...
 
 # 📁 Data <a name="data"></a>
 
