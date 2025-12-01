@@ -206,9 +206,11 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-./anonymous_caption/seed-groups/
-./anonymous_caption/wandb/
-./relsim/wandb/            
+/anonymous_caption/seed-groups/
+/anonymous_caption/wandb/*
+/relsim/wandb/*      
+/anonymous_caption/ckpt/*
+/relsim/ckpt/*
 
 # big folders with images
 ./data/anonymous_captions_train_images/
@@ -216,3 +218,5 @@ __marimo__/
 ./data/seed_groups_images/
 
 relsim.egg-info/
+relsim/wandb/
+wandb*.png

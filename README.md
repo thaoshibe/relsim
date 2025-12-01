@@ -70,12 +70,11 @@ Or you can run `python test.py` for a quick test. Here is example results. All i
 |  (to itself: 1.000) | 0.981 | 0.808 | 0.767 | 0.214| -->
 
 
-
-
 ---
-🤗 You're welcome to improve the current relsim model! The training code is provided in [./relsim/](./relsim) folder. For a quick jump to the training script: (Reminder: you need to download data [here](#-data) to run this code sucessfully)
+🤗 You're welcome to improve the current relsim model! The training code is provided in [./relsim/](./relsim) folder. For a quick jump to the training script: <br>
+*(Reminder: you need to download data [here](#data) to run this code sucessfully)*
 
-```
+```bash
 cd relsim
 # pip install -r requirements_train.txt
 bash train.sh # this assume you have the dataset alrerady
@@ -101,7 +100,7 @@ This model is trained on a limited number of seed groups and their corresponding
 
 <br>
 
-```python
+```bash
 # run on default test image (mam.jpg)
 python anonymous_caption/anonymous_caption.py
 
@@ -123,7 +122,7 @@ Here is example of the generated captions with different runs.
 The training script for the anonymous caption model is shown below.
 Please check [config.yaml](./anonymous_caption/config.yaml) for config details.
 
-```
+```bash
 #########################################
 #
 #     train anonymous caption model 
@@ -173,7 +172,7 @@ You can increase MAX_WORKER to speed up the download or reduce it depending on y
 
 To download, please run this the [data/download_data.sh](./data/download_data.sh)
 
-```
+```bash
 #########################################
 #
 #            download data
@@ -199,6 +198,7 @@ bash data/download_data.sh # this script will download all dataset
   journal={arXiv preprint arXiv:XXXX.XXXXX},
   year={2025}
 }
+```
 
 ---
-The end; Thank you!
+The end; Thank you~ (.❛ ᴗ ❛.).
