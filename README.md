@@ -21,12 +21,76 @@
 
 ---
 
-🔗 Jump to: [Requirements](#requirements) | [🛠️ Usage](#usage) | [🫥 Anonymous Captioning Model](#anonymousmodel) | [📁 Data](#data) | [BibTeX](#citation) |
+🔗 Jump to: [🛠️ Quick Usage](#usage) | [🫥 Anonymous Captioning Model](#anonymousmodel) | [📁 Data](#data) | [BibTeX](#citation) |
 
-# 🛠️ Usage <a name="usage"></a>
+---
 
-Given two images, you can compute their relational visual similarity like this:
+# 🛠️ Quick Usage <a name="usage"></a>
 
+First, install relsim:
+
+```bash
+# option 1
+pip install relsim
+
+# option 2
+git clone https://github.com/thaoshibe/relsim.git
+cd relsim
+pip install -e .
+# or: git clone https://github.com/thaoshibe/relsim.git
+```
+
+Then, given two images, you can compute their relational visual similarity like this:
+
+
+```python
+from relsim.relsim_score import relsim
+from PIL import Image
+
+# Load model
+model, preprocess = relsim(pretrained=True, checkpoint_dir="thaoshibe/relsim-qwenvl25-lora")
+
+img1 = preprocess(Image.open("image_path_1"))
+img2 = preprocess(Image.open("image_path_2"))
+similarity = model(img1, img2)  # Returns similarity score (higher = more similar)
+print(f"✅ Similarity score: {similarity:.4f}")
+```
+
+Or you can run `python test.py` for a quick test. Here is example results. All images can be found in [this folder](./anonymous_caption/):
+| reference image | test image 1  | test image 2 | test image 3 | test image 4 | test image 5 | test image 6 |
+|--------------|-----------------|------------|------------|------------|------------|------------|
+| <img src="./anonymous_caption/mam.jpg" height="150"> | <img src="./anonymous_caption/mam2.jpg" height="150"> | <img src="./anonymous_caption/mam5.jpg" height="150">  | <img src="./anonymous_caption/mam3.jpg" height="150"> | <img src="./anonymous_caption/bo2.jpg" height="150"> | <img src="./anonymous_caption/mam4.jpg" height="150"> | <img src="./anonymous_caption/bo.jpg" height="150"> |
+|  (to itself: 1.000) | 0.981 | 0.830 | 0.808 | 0.767 | 0.465 | 0.223 | 
+
+<!-- Or another image set:
+
+| reference image | test image 1  | test image 2 | test iamge 3 | test iamge 4 |
+|--------------|-----------------|------------|------------|------------|
+| <img src="./anonymous_caption/mam.jpg" height="200"> | <img src="./anonymous_caption/mam2.jpg" height="200">  | <img src="./anonymous_caption/mam4.jpg" height="200"> | <img src="./anonymous_caption/bo2.jpg" height="200"> | <img src="./anonymous_caption/mam3.jpg" height="200"> |
+|  (to itself: 1.000) | 0.981 | 0.808 | 0.767 | 0.214| -->
+
+
+
+
+---
+🤗 You're welcome to improve the current relsim model! The training code is provided in [./relsim/](./relsim) folder. For a quick jump to the training script: (Reminder: you need to download data [here](#-data) to run this code sucessfully)
+
+```
+cd relsim
+# pip install -r requirements_train.txt
+bash train.sh # this assume you have the dataset alrerady
+
+### you might want to export WANDB and HF_TOKEN
+# export WANDB_API_KEY='your_wandb_api_key'
+# export HF_TOKEN='your_hf_token'
+```
+
+<details>
+<summary> If you use wandb to log the result, your wandb should look like this</summary>
+<img src='./relsim/wandb_relsim_train.png' height=300px>
+</details>
+
+---
 
 # 🫥 Anonymous Caption Model <a name="anonymousmodel"></a>
 
@@ -56,18 +120,24 @@ Here is example of the generated captions with different runs.
 
 > You are more than welcome to help improve the anonymous caption model! The current model may hallucinate or produce incorrect results, and sometimes it may generate captions that are not "anonymous enough"...
 
-For your convenience, a snapshot of the anonymous caption model is shown below. Please check [./anonymous_caption/config.yaml](./anonymous_caption/config.yaml) for config details.
+The training script for the anonymous caption model is shown below.
+Please check [config.yaml](./anonymous_caption/config.yaml) for config details.
 
 ```
-# suppose that you are in the repo
+#########################################
+#
+#     train anonymous caption model 
+#
+#########################################
 
 # (optional) install git lfs if you don't have
 sudo apt update
 sudo apt install git-lfs
 git lfs install
 
-# export HF_TOKEN='your_api_key_here'
-# export WANDB_API_KEY='your_api_key_here'
+# clone repo if you havent do that
+git clone https://github.com/thaoshibe/relsim.git
+cd relsim
 
 # download the training data
 cd anonymous_caption
@@ -77,13 +147,19 @@ pip install -r requirements.txt
 python anonymous_caption_train.py
 ```
 
-If you choose to log to wandb, your wandb should look like this
+<details>
+<summary>*If you choose to log to wandb, your wandb should look like image below. Checkpoints will be saved in `./anonymous_caption/ckpt`.*</summary>
 <br><img src='./anonymous_caption/wandb_snapshot.png' height="300">
-<br> And the output should look like...
+<br>
+And your console should look like this:
+<br>
+<img src='./anonymous_caption/console.png' height="300">
+</details>
 
+---
 # 📁 Data <a name="data"></a>
 
-> **🔍 You can see the snapshot of the data here: [🔍🔍🔍 relsim: data viewer](https://thaoshibe.github.io/relsim/data_viewer/index.html)**
+> **🔍 You can see the snapshot of the data on this live website: [🔍🔍🔍 relsim: data viewer](https://thaoshibe.github.io/relsim/data_viewer/index.html)**
 
 | Dataset name | Short description  | JSON file | 🔍 Data viewer |
 |--------------|-----------------|------------|------------|
@@ -91,25 +167,29 @@ If you choose to log to wandb, your wandb should look like this
 | anonymous-captions-114k <a href="https://huggingface.co/datasets/thaoshibe/anonymous-captions-114k"><img src="https://img.shields.io/badge/🤗-Dataset-yellow" alt="HuggingFace Dataset"></a> | Use to train the relational similarity model | [anonymous_captions_train.jsonl](./data/anonymous_captions_train.jsonl), [anonymous_captions_test.jsonl](./data/anonymous_captions_test.jsonl)| [See Anonymous Captions Dataset](https://thaoshibe.github.io/relsim/data_viewer/anonymous_captions.html) |
 
 Each image will be given by their corresponding Image URL. Please see the json files in [./data](./data).
-<br>(Optional) Depending on your internet speed, it should take under 0.5 hours to download all images with the default MAX_WORKER = 64.
+<br>
+<br> (Optional) Depending on your internet speed, it should take under 0.5 hours to download all images with the default MAX_WORKER = 64.
 You can increase MAX_WORKER to speed up the download or reduce it depending on your machine (see the [data/download_data.sh](./data/download_data.sh))
 
 To download, please run this the [data/download_data.sh](./data/download_data.sh)
 
 ```
-# download dataset
+#########################################
+#
+#            download data
+#
+#########################################
 
-git clone https://github.com/thaoshibe/relsim.git #clone the repo if you haven't do that
+git clone https://github.com/thaoshibe/relsim.git
 cd relsim
-
 bash data/download_data.sh # this script will download all dataset
 ```
 
+---
 ## Disclaimer
 > All images are extracted from [LAION](https://laion.ai/) dataset. We do **NOT** own any of the images and we acknowledge the rights and contributions of the original creators. Please respect the authors of all images. These images are used for **research purposes only**.
 
 ---
-
 ## BibTeX <a name="citation"></a>
 
 ```bibtex
@@ -119,3 +199,6 @@ bash data/download_data.sh # this script will download all dataset
   journal={arXiv preprint arXiv:XXXX.XXXXX},
   year={2025}
 }
+
+---
+The end; Thank you!

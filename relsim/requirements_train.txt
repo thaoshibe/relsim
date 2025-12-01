@@ -1,0 +1,7 @@
+peft==0.14.0
+Pillow==12.0.0
+qwen_vl_utils==0.0.14
+sentence_transformers==5.1.2
+torch==2.5.1+cu124
+tqdm==4.67.1
+transformers==4.57.3

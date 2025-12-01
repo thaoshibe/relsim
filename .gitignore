@@ -208,3 +208,11 @@ __marimo__/
 
 ./anonymous_caption/seed-groups/
 ./anonymous_caption/wandb/
+./relsim/wandb/            
+
+# big folders with images
+./data/anonymous_captions_train_images/
+./data/anonymous_captions_test_images/
+./data/seed_groups_images/
+
+relsim.egg-info/

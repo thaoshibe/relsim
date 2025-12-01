@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "relsim"
+version = "0.1.0"
+description = "Relational Visual Similarity - A new visual similarity notion that captures the internal relational logic of a scene"
+readme = "README.md"
+authors = [
+    {name = "Thao Nguyen", email = "thao.nguyen@wisc.edu"},
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+keywords = ["computer vision", "image similarity", "deep learning", "pytorch", "transformers"]
+requires-python = ">=3.8"
+dependencies = [
+    "datasets>=2.14.4",
+    "numpy>=1.21.0",
+    "peft>=0.18.0",
+    "Pillow>=10.0.0",
+    "PyYAML>=6.0.0",
+    "qwen_vl_utils>=0.0.14",
+    "requests>=2.32.0",
+    "sentence-transformers>=5.1.0",
+    "torch>=2.0.0",
+    "tqdm>=4.67.0",
+    "transformers>=4.57.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+]
+
+[project.urls]
+Homepage = "https://thaoshibe.github.io/relsim/"
+Repository = "https://github.com/thaoshibe/relsim"
+Documentation = "https://thaoshibe.github.io/relsim/"
+"Bug Tracker" = "https://github.com/thaoshibe/relsim/issues"
+
+[tool.setuptools]
+packages = ["relsim"]
+
+[tool.setuptools.package-data]
+relsim = ["*.yaml", "*.txt"]
+
