@@ -3,9 +3,11 @@
 <p align="left">
   <a href="PUT_ARXIV_LINK_HERE"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?logo=arxiv&logoColor=white" alt="arXiv"></a>
   <a href="#citation"><img src="https://img.shields.io/badge/BibTeX-Citation-blue" alt="BibTeX"></a>
-  <a href="https://thaoshibe.github.io/relsim/"><img src="https://img.shields.io/badge/Project-Page-green" alt="Project Page"></a>
   <a href="https://huggingface.co/datasets/thaoshibe/anonymous-captions-114k"><img src="https://img.shields.io/badge/🤗-Dataset-yellow" alt="HuggingFace Dataset"></a>
-  <a href="https://thaoshibe.github.io/relsim/data_viewer/index.html"><img src="https://img.shields.io/badge/Data-Viewer-green" alt="Data Viewer"></a>
+  <a href="https://thaoshibe.github.io/relsim/"><img src="https://img.shields.io/badge/ProjectPage-up-green" alt="Project Page"></a>
+  <a href="https://thaoshibe.github.io/relsim/data_viewer/index.html"><img src="https://img.shields.io/badge/Dataset-Viewer-green" alt="Dataset Live view"></a>
+  <a href="https://thaoshibe.github.io/relsim/retrieve/index.html"><img src="https://img.shields.io/badge/ImageRetrieval-Results-green" alt="Image Retrieval Results"></a>
+  <a href="https://github.com/thaoshibe/relsim/stargazers"><img src="https://img.shields.io/github/stars/thaoshibe/relsim?style=social" alt="GitHub stars"></a>
 </p>
 
 | ![](https://thaoshibe.github.io/relsim/images/peach-earth.png) |
@@ -21,7 +23,12 @@
 
 ---
 
-🔗 Jump to: [🛠️ Quick Usage](#usage) | [🫥 Anonymous Captioning Model](#anonymousmodel) | [📁 Data](#data) | [BibTeX](#citation) |
+🔗 Jump to:
+1. [🛠️ Quick Usage](#usage)
+1. [🫥 Anonymous Captioning Model](#anonymousmodel)
+1. [📁 Dataset](#data) | [live view](https://thaoshibe.github.io/relsim/data_viewer/index.html)
+1. [🔄 Image Retrieval](#retrieval) | [live view](https://thaoshibe.github.io/relsim/retrieve/index.html)
+1. [📄 BibTeX](#citation)
 
 ---
 
@@ -42,7 +49,6 @@ pip install -e .
 
 Then, given two images, you can compute their relational visual similarity like this:
 
-
 ```python
 from relsim.relsim_score import relsim
 from PIL import Image
@@ -53,7 +59,7 @@ model, preprocess = relsim(pretrained=True, checkpoint_dir="thaoshibe/relsim-qwe
 img1 = preprocess(Image.open("image_path_1"))
 img2 = preprocess(Image.open("image_path_2"))
 similarity = model(img1, img2)  # Returns similarity score (higher = more similar)
-print(f"✅ Similarity score: {similarity:.4f}")
+print(f"relational similarity score: {similarity:.3f}")
 ```
 
 Or you can run `python test.py` for a quick test. Here is example results. All images can be found in [this folder](./anonymous_caption/):
@@ -185,7 +191,38 @@ bash data/download_data.sh # this script will download all dataset
 ```
 
 ---
-## Disclaimer
+# 🔄 Image Retrieval <a name="retrieval"></a>
+
+You might want to build an image retrieval system.
+A snapshot of how to do that is provided in [./retrieval/](./retrieval/), together with the GPT-4o scoring code (to evaluate top-k retrieval).
+The full code could be find in [./retrieval/pipeline.sh](./retrieval/pipeline.sh).
+
+```bash
+cd retrieval
+
+# precompute the embedding for each image
+CUDA_VISIBLE_DEVICES=0,1,2,3 python get_embedding_our.py \
+    --checkpoint_dir thaoshibe/relsim-qwenvl25-lora \
+    --json_file ../data/anonymous_captions_test.jsonl \
+    --output_path ./precomputed/relsim.npz \
+    --batch_size 16
+
+# perform retrieval
+python retrieve_topk_images.py \
+    --precomputed_dir ./precomputed \
+    --output_file retrieved_images.json \
+    --topk 10 \
+    --num_images 1000 \
+    --image_dir ./images
+```
+
+An example of retrieved_images.json are provided in [./retrieval/retrieved_images.json](./retrieval/retrieved_images.json).
+You can also see the uncured 1000 retrieved results live at [🔍 Image Retrieval Results | LIVE!!!](https://thaoshibe.github.io/relsim/retrieve/index.html).
+
+(Optional) If you want to use GPT4o to evaluate the result, please put your GPT-4o's API key in [./retrieval/gpt4o_config.yaml](./retrieval/gpt4o_config.yaml). Then run the GPT-4o evaluation code as bottom of this file [./retrieval/pipeline.sh](./retrieval/pipeline.sh).
+
+---
+## ⚠️ Disclaimer
 > All images are extracted from [LAION](https://laion.ai/) dataset. We do **NOT** own any of the images and we acknowledge the rights and contributions of the original creators. Please respect the authors of all images. These images are used for **research purposes only**.
 
 ---
@@ -201,4 +238,7 @@ bash data/download_data.sh # this script will download all dataset
 ```
 
 ---
-The end; Thank you~ (.❛ ᴗ ❛.).
+You've reached the end (.❛ ᴗ ❛.).
+<br>(ˆڡˆ)◞🍪
+<br>🍪 here is a cookie for you~
+<br>Enjoy and consider giving me a star ⭐~ Thank you. [![GitHub stars](https://img.shields.io/github/stars/thaoshibe/relsim?style=social)](https://github.com/thaoshibe/relsim)

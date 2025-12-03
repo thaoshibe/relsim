@@ -220,3 +220,11 @@ __marimo__/
 relsim.egg-info/
 relsim/wandb/
 wandb*.png
+./retrieval/images/*
+./retrieval/models/*
+./retrieval/precomputed/*
+./retrieval/*.html
+
+# Secrets/config files
+**/gpt4o_config.yaml
+*_config.yaml
