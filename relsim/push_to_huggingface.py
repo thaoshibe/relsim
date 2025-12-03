@@ -6,7 +6,7 @@ from huggingface_hub import HfApi, create_repo
 import os
 
 # Configuration
-LOCAL_CHECKPOINT_PATH = "/sensei-fs-3/tenants/Sensei-AdobeResearchTeam/thaon/code/checkpoint-2000/"
+LOCAL_CHECKPOINT_PATH = "your_checkpoint_path"
 REPO_ID = "username/your_repo_name"  # Change to your username
 
 def push_to_hf():

@@ -241,4 +241,4 @@ You can also see the uncured 1000 retrieved results live at [🔍 Image Retrieva
 You've reached the end (.❛ ᴗ ❛.).
 <br>(ˆڡˆ)◞🍪
 <br>🍪 here is a cookie for you~
-<br>Enjoy and consider giving me a star ⭐~ Thank you. [![GitHub stars](https://img.shields.io/github/stars/thaoshibe/relsim?style=social)](https://github.com/thaoshibe/relsim)
+<br>Enjoy and consider giving me a star ⭐~ Thank you [![GitHub stars](https://img.shields.io/github/stars/thaoshibe/relsim?style=social)](https://github.com/thaoshibe/relsim)

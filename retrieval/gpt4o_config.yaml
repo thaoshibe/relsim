@@ -1,0 +1,8 @@
+azure_openai:
+  api_type: "your_api_type" (e.g. "azure")
+  api_key: "your_api_key"
+  api_base: "your_api_base" (e.g. "https://xxxx.openai.azure.com/")
+  api_version: "your_api_version" (e.g. "2024-02-15-preview")
+  deployment_name: "your_deployment_name" (e.g. "gpt-4o-xxxx-xxxx")
+
+
