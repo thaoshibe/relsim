@@ -1,9 +1,3 @@
-"""
-Inference script to compute baseline embeddings (CLIP, DINOv2, DreamSim) for all images in the dataset.
-Saves embeddings to disk for retrieval tasks.
-
-Can also load trained ablation models (CLIP/DINOv2 with LoRA + projection head) by providing checkpoint paths.
-"""
 import argparse
 import json
 import torch

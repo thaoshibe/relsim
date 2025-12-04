@@ -1,7 +1,7 @@
 # export WANDB_API_KEY='your_wandb_api_key'
 # export HF_TOKEN='your_hf_token'
 
-CUDA_VISIBLE_DEVICES=4,5,6,7 python train_relsim.py \
+python train_relsim.py \
     --json_files ../data/anonymous_captions_train.jsonl \
     --image_folder ../data/anonymous_captions_train_images \
     --output_dir /mnt/localssd/ \

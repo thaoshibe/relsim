@@ -44,7 +44,11 @@ pip install relsim
 git clone https://github.com/thaoshibe/relsim.git
 cd relsim
 pip install -e .
-# or: git clone https://github.com/thaoshibe/relsim.git
+
+# option 3
+git clone https://github.com/thaoshibe/relsim.git
+cd relsim
+pip install -r requirements.txt
 ```
 
 Then, given two images, you can compute their relational visual similarity like this:

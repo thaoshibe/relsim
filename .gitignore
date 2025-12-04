@@ -226,4 +226,6 @@ wandb*.png
 ./retrieval/*.html
 
 # Secrets/config files
-**/gpt4o_config.yaml
+retrieval/gpt4o_config.yaml
+data/anonymous_captions_train_images
+data/anonymous_captions_test_images
