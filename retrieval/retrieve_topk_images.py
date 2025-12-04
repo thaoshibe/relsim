@@ -54,12 +54,15 @@ if __name__ == "__main__":
     if len(npz_files) == 0:
         raise ValueError(f"No npz files found in {precomputed_dir}")
     
-    first_data = np.load(npz_files[0])
+    first_data = np.load('./precomputed/relsim.npz')
     total_images = len(first_data['embeddings'])
     
-    # Random sample indices from total images
-    random_indices = np.random.choice(total_images, min(num_images, total_images), replace=False)
+    # select the indices of intersting images to retrieve
+    start_index = 14881
+    available_indices = np.arange(start_index, total_images)
+    random_indices = np.random.choice(available_indices, min(num_images, len(available_indices)), replace=False)
     print(f"Sampled {len(random_indices)} random indices from {total_images} total images")
+    print(random_indices)
 
     save_dict = {}
     for npz_file in tqdm(npz_files, desc="Processing npz files"):

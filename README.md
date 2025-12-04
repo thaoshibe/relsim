@@ -91,7 +91,7 @@ bash train.sh # this assume you have the dataset alrerady
 ```
 
 <details>
-<summary> If you use wandb to log the result, your wandb should look like this</summary>
+<summary> Click here to see example of wandb log</summary>
 <img src='./relsim/wandb_relsim_train.png' height=300px>
 </details>
 
@@ -153,7 +153,7 @@ python anonymous_caption_train.py
 ```
 
 <details>
-<summary>*If you choose to log to wandb, your wandb should look like image below. Checkpoints will be saved in `./anonymous_caption/ckpt`.*</summary>
+<summary>*Click here to see example of wandb log. Checkpoints will be saved in `./anonymous_caption/ckpt`.*</summary>
 <br><img src='./anonymous_caption/wandb_snapshot.png' height="300">
 <br>
 And your console should look like this:
@@ -193,17 +193,17 @@ bash data/download_data.sh # this script will download all dataset
 ---
 # 🔄 Image Retrieval <a name="retrieval"></a>
 
-You might want to build an image retrieval system.
-A snapshot of how to do that is provided in [./retrieval/](./retrieval/), together with the GPT-4o scoring code (to evaluate top-k retrieval).
-The full code could be find in [./retrieval/pipeline.sh](./retrieval/pipeline.sh).
+You might want to build an image retrieval system.  
+A snapshot of how to do that is provided in [./retrieval/](./retrieval/), along with the GPT-4o scoring code (to evaluate top-k retrieval). The provided databases are [14k-test-set](./data/anonymous_captions_test.jsonl) and [14k random images](./data/random_images_14k.jsonl) from LAION. Here, we combined them for the convenience of the code into [combined.jsonl](./retrieval/combined.jsonl).  
+The full code can be found in [./retrieval/pipeline.sh](./retrieval/pipeline.sh).
 
 ```bash
 cd retrieval
 
 # precompute the embedding for each image
-CUDA_VISIBLE_DEVICES=0,1,2,3 python get_embedding_our.py \
+python get_embedding_our.py \
     --checkpoint_dir thaoshibe/relsim-qwenvl25-lora \
-    --json_file ../data/anonymous_captions_test.jsonl \
+    --json_file combined.jsonl \
     --output_path ./precomputed/relsim.npz \
     --batch_size 16
 
@@ -219,7 +219,13 @@ python retrieve_topk_images.py \
 An example of retrieved_images.json are provided in [./retrieval/retrieved_images.json](./retrieval/retrieved_images.json).
 You can also see the uncured 1000 retrieved results live at [🔍 Image Retrieval Results | LIVE!!!](https://thaoshibe.github.io/relsim/retrieve/index.html).
 
-(Optional) If you want to use GPT4o to evaluate the result, please put your GPT-4o's API key in [./retrieval/gpt4o_config.yaml](./retrieval/gpt4o_config.yaml). Then run the GPT-4o evaluation code as bottom of this file [./retrieval/pipeline.sh](./retrieval/pipeline.sh).
+(Optional) If you want to use GPT-4o to evaluate the results, please put your GPT-4o API key in [./retrieval/gpt4o_config.yaml](./retrieval/gpt4o_config.yaml). Then run the GPT-4o evaluation code at the bottom of this file: [./retrieval/pipeline.sh](./retrieval/pipeline.sh). GPT-4o's answers may vary between sessions.
+
+<details>
+<summary>Click here to see one example snapshot of the GPT-4o score</summary>
+
+<img src="./retrieval/gpt4o_example.png" height="300">
+</details>
 
 ---
 ## ⚠️ Disclaimer

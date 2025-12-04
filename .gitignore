@@ -227,4 +227,3 @@ wandb*.png
 
 # Secrets/config files
 **/gpt4o_config.yaml
-*_config.yaml
