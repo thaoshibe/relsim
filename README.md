@@ -1,4 +1,4 @@
-# <img src="https://thaoshibe.github.io/relsim/images/favicon.png" height=30px> [Relational Visual Similarity (relsim)](https://thaoshibe.github.io/relsim/)
+# <img src="https://thaoshibe.github.io/relsim/images/favicon.png" height=35px> [Relational Visual Similarity (relsim)](https://thaoshibe.github.io/relsim/)
 
 <p align="left">
   <a href="PUT_ARXIV_LINK_HERE"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?logo=arxiv&logoColor=white" alt="arXiv"></a>
@@ -22,7 +22,7 @@
 > TL;DR: We introduce a new visual similarity notion: **relational visual similarity**, which complements traditional **attribute-based perceptual similarity** (e.g., LPIPS, CLIP, DINO).
 
 <details>
-<summary> Click here to read <b>Abstract</b></summary>
+<summary> Click here to read <b>Abstract 📝</b></summary>
 Humans do not just see attribute similarity---we also see relational similarity. An apple is like a peach because both are reddish fruit, but the Earth is also like a peach: its crust, mantle, and core correspond to the peach’s skin, flesh, and pit. This ability to perceive and recognize relational similarity, is arguable by cognitive scientist to be what distinguishes humans from other species.
 Yet, all widely used visual similarity metrics today (e.g., LPIPS, CLIP, DINO) focus solely on perceptual attribute similarity and fail to capture the rich, often surprising relational similarities that humans perceive.
 How can we go beyond the visible content of an image to capture its relational properties? How can we bring images with the same relational logic closer together in representation space?
@@ -43,7 +43,9 @@ Our study shows that while relational similarity has a lot of real-world applica
 
 # 🛠️ Quick Usage <a name="usage"></a>
 
-Code is tested on Python 3.10: NVIDIA-A100 (torch2.5.1+cu124) and RTX (). Please install pytorch and torchvision according to your machine configuration.
+This code is tested on Python 3.10: (i) **NVIDIA A100 80GB** (torch2.5.1+cu124) and (ii) **NVIDIA RTX A6000 48GB** (torch2.9.1+cu128).
+<br>
+Other hardware setup hasn't been tested, but it should still work.Please install pytorch and torchvision according to your machine configuration.
 
 ```bash
 conda create -n relsim python=3.10
@@ -232,6 +234,25 @@ You can also see the **uncurated 1000 retrieved results** live at [🔍 Image Re
 
 <img src="./retrieval/gpt4o_example.png" height="300">
 </details>
+
+---
+# 📊 Similarity Space Figure
+
+You might not believe it, but yes, we spent months+++ figuring out how to plot this theorical **Similarity Space** (Figure 7 in main paper).  
+So I won't let that effort go to waste! Code for the figures in this paper is available in [./plot_figure/](./plot_figure/).
+
+<table>
+  <tr>
+    <td><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=JQ2VugwAAAAJ&citation_for_view=JQ2VugwAAAAJ:2osOgNQ5qMEC"><img src='./plot_figure/similarity_space_theory.png'></a></td>
+    <td><img src='./plot_figure/xyplot.png'></td>
+  </tr>
+</table>
+
+Left: *Similarity Space* figure---in Cognitive Science theory, published with the *phenomenal* 1997 paper: ["Structure Mapping in Analogy and Similarity"](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=JQ2VugwAAAAJ&citation_for_view=JQ2VugwAAAAJ:2osOgNQ5qMEC) (Dedre Gentner and Arthur B. Markman).
+<br> Right: *Similarity Space* figure---in Computer Science~ yes, after almost 30 years, we finally can replicate the theorical figure, with [Relational Visual Similarity](https://thaoshibe.github.io/relsim) paper.
+
+Cool, isn't it??
+(˵ •̀ ᴗ - ˵ ) ✧
 
 ---
 ## ⚠️ Disclaimer
