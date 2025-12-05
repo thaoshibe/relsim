@@ -1,4 +1,4 @@
-# relsim
+# <img src="https://thaoshibe.github.io/relsim/images/favicon.png" height=30px> [Relational Visual Similarity (relsim)](https://thaoshibe.github.io/relsim/)
 
 <p align="left">
   <a href="PUT_ARXIV_LINK_HERE"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?logo=arxiv&logoColor=white" alt="arXiv"></a>
@@ -21,6 +21,15 @@
 
 > TL;DR: We introduce a new visual similarity notion: **relational visual similarity**, which complements traditional **attribute-based perceptual similarity** (e.g., LPIPS, CLIP, DINO).
 
+<details>
+<summary> Click here to read <b>Abstract</b></summary>
+Humans do not just see attribute similarity---we also see relational similarity. An apple is like a peach because both are reddish fruit, but the Earth is also like a peach: its crust, mantle, and core correspond to the peach’s skin, flesh, and pit. This ability to perceive and recognize relational similarity, is arguable by cognitive scientist to be what distinguishes humans from other species.
+Yet, all widely used visual similarity metrics today (e.g., LPIPS, CLIP, DINO) focus solely on perceptual attribute similarity and fail to capture the rich, often surprising relational similarities that humans perceive.
+How can we go beyond the visible content of an image to capture its relational properties? How can we bring images with the same relational logic closer together in representation space?
+To answer these questions, we first formulate relational image similarity as a measurable problem: two images are relationally similar when their internal relations or functions among visual elements correspond, even if their visual attributes differ.
+We then curate 114k image–caption dataset in which the captions are anonymized---describing the underlying relational logic of the scene rather than its surface content. Using this dataset, we finetune a Vision–Language model to measure the relational similarity between images. This model serves as the first step toward connecting images by their underlying relational structure rather than their visible appearance.
+Our study shows that while relational similarity has a lot of real-world applications, existing image similarity models fail to capture it---revealing a critical gap in visual computing.
+</details>
 ---
 
 🔗 Jump to:
@@ -34,24 +43,19 @@
 
 # 🛠️ Quick Usage <a name="usage"></a>
 
-First, install relsim:
+Code is tested on Python 3.10: NVIDIA-A100 (torch2.5.1+cu124) and RTX (). Please install pytorch and torchvision according to your machine configuration.
 
 ```bash
-# option 1
+conda create -n relsim python=3.10
 pip install relsim
 
-# option 2
-git clone https://github.com/thaoshibe/relsim.git
-cd relsim
-pip install -e .
-
-# option 3
+# or you can clone the repo
 git clone https://github.com/thaoshibe/relsim.git
 cd relsim
 pip install -r requirements.txt
 ```
 
-Then, given two images, you can compute their relational visual similarity like this:
+Given two images, you can compute their relational visual similarity (relsim) like this:
 
 ```python
 from relsim.relsim_score import relsim
@@ -66,7 +70,7 @@ similarity = model(img1, img2)  # Returns similarity score (higher = more simila
 print(f"relational similarity score: {similarity:.3f}")
 ```
 
-Or you can run `python test.py` for a quick test. Here is example results. All images can be found in [this folder](./anonymous_caption/):
+Or you can run [`python test.py`](test.py) for a quick test. Here is example results. All below images can be found in [this folder](./anonymous_caption/):
 | reference image | test image 1  | test image 2 | test image 3 | test image 4 | test image 5 | test image 6 |
 |--------------|-----------------|------------|------------|------------|------------|------------|
 | <img src="./anonymous_caption/mam.jpg" height="150"> | <img src="./anonymous_caption/mam2.jpg" height="150"> | <img src="./anonymous_caption/mam5.jpg" height="150">  | <img src="./anonymous_caption/mam3.jpg" height="150"> | <img src="./anonymous_caption/bo2.jpg" height="150"> | <img src="./anonymous_caption/mam4.jpg" height="150"> | <img src="./anonymous_caption/bo.jpg" height="150"> |
@@ -81,12 +85,13 @@ Or you can run `python test.py` for a quick test. Here is example results. All i
 
 
 ---
-🤗 You're welcome to improve the current relsim model! The training code is provided in [./relsim/](./relsim) folder. For a quick jump to the training script: <br>
-*(Reminder: you need to download data [here](#data) to run this code sucessfully)*
+🤗 You're welcome to improve the current relsim model! The training code is provided in [./relsim/train.sh](./relsim/train.sh) folder. For a quick jump to the training script: <br>
+*(Reminder: you might need to download data [here](#data) first to run this training code sucessfully)*
 
 ```bash
-cd relsim
-# pip install -r requirements_train.txt
+git clone https://github.com/thaoshibe/relsim.git
+cd relsim/relsim
+pip install -r requirements_train.txt
 bash train.sh # this assume you have the dataset alrerady
 
 ### you might want to export WANDB and HF_TOKEN
@@ -106,9 +111,7 @@ bash train.sh # this assume you have the dataset alrerady
 > *Anonymous captions are image captions that do not refer to specific visible objects but instead capture the relational logic conveyed by the image.*
 
 The pretrained anonymous caption model (Qwen-VL-2.5 7B) is provided in [./anonymous_caption](./anonymous_caption/).
-This model is trained on a limited number of seed groups and their corresponding generated captions (you can see the training data [here](https://thaoshibe.github.io/relsim/data_viewer/seed_groups.html)).
-
-<br>
+This model is trained on a limited number of seed groups and their corresponding generated captions (see the training data [here](https://thaoshibe.github.io/relsim/data_viewer/seed_groups.html)).
 
 ```bash
 # run on default test image (mam.jpg)
@@ -121,13 +124,13 @@ python anonymous_caption/anonymous_caption.py --image_path $PATH_TO_IMAGE_OR_IMA
 python anonymous_caption/anonymous_caption.py --help
 ```
 
-Here is example of the generated captions with different runs.
-| Input image | Generated captions (Different run) |
+Here is example of the generated anonymous captions with different runs.
+| Input image | Generated anonymous captions (Different run) |
 |-----|-------|
 | <img src="./anonymous_caption/mam.jpg" height="200"> | Example: `python anonymous_caption/anonymous_caption.py --image_path anonymous_caption/mam.jpg`<br>Run 1: "Curious {Animal} peering out from behind a {Object}."<br> Run 2: "Curious {Animal} peeking out from behind the {Object} in an unexpected and playful way."<br> Run 3: "Curious {Cat} looking through a {Doorway} into the {Room}."<br> Run 4: "A curious {Animal} peeking from behind a {Barrier}."<br> Run 5: "A {Cat} peeking out from behind a {Door} with curious eyes."<br>... |
-| <img src='./anonymous_caption/bo.jpg' height="200"> | Example: `python anonymous_caption/anonymous_caption.py --image_path anonymous_caption/bo.jpg`<br>Run 1: "Animals with {Leaf} artfully placed on their {Head}."<br> Run 2: "A {Dog} with a {Leaf} delicately placed on its head."<br> Run 3: "A {Dog} with a {Leaf} artfully placed on its head."<br> Run 4: "A {Dog} with a {Leaf} delicately placed on their head, representing the beauty of {Season}."<br> Run5: "Animals adorned with {Leaf} in a {Seasonal} setting."<br> ...| 
+| <img src='./anonymous_caption/bo.jpg' height="200"> | Example: `python anonymous_caption/anonymous_caption.py --image_path anonymous_caption/bo.jpg`<br>Run 1: "Animals with {Leaf} artfully placed on their {Head}."<br> Run 2: "A {Dog} with a {Leaf} delicately placed on its head."<br> Run 3: "A {Dog} with a {Leaf} artfully placed on its head."<br> Run 4: "A {Dog} with a {Leaf} delicately placed on their head, representing the beauty of {Season}."<br> Run 5: "Animals adorned with {Leaf} in a {Seasonal} setting."<br> ...| 
 
-> You are more than welcome to help improve the anonymous caption model! The current model may hallucinate or produce incorrect results, and sometimes it may generate captions that are not "anonymous enough"...
+> 🤗 You are more than welcome to help improve the anonymous caption model! The current model may hallucinate or produce incorrect results, and sometimes it may generate captions that are not "anonymous enough", etc.
 
 The training script for the anonymous caption model is shown below.
 Please check [config.yaml](./anonymous_caption/config.yaml) for config details.
@@ -139,17 +142,16 @@ Please check [config.yaml](./anonymous_caption/config.yaml) for config details.
 #
 #########################################
 
-# (optional) install git lfs if you don't have
+# install git lfs if you don't have
 sudo apt update
 sudo apt install git-lfs
 git lfs install
 
-# clone repo if you havent do that
+# clone repo if you haven't do that yet
 git clone https://github.com/thaoshibe/relsim.git
-cd relsim
 
 # download the training data
-cd anonymous_caption
+cd relsim/anonymous_caption
 git clone https://huggingface.co/datasets/thaoshibe/seed-groups
 pip install -r requirements.txt
 # run train
@@ -157,7 +159,7 @@ python anonymous_caption_train.py
 ```
 
 <details>
-<summary>*Click here to see example of wandb log. Checkpoints will be saved in `./anonymous_caption/ckpt`.*</summary>
+<summary> Click here to see example of wandb log. Checkpoints will be saved in `./anonymous_caption/ckpt`.*</summary>
 <br><img src='./anonymous_caption/wandb_snapshot.png' height="300">
 <br>
 And your console should look like this:
@@ -178,7 +180,7 @@ And your console should look like this:
 Each image will be given by their corresponding Image URL. Please see the json files in [./data](./data).
 <br>
 <br> (Optional) Depending on your internet speed, it should take under 0.5 hours to download all images with the default MAX_WORKER = 64.
-You can increase MAX_WORKER to speed up the download or reduce it depending on your machine (see the [data/download_data.sh](./data/download_data.sh))
+You can increase MAX_WORKER to speed up the download or reduce it depending on your internet (see the [data/download_data.sh](./data/download_data.sh))
 
 To download, please run this the [data/download_data.sh](./data/download_data.sh)
 
@@ -221,7 +223,7 @@ python retrieve_topk_images.py \
 ```
 
 An example of retrieved_images.json are provided in [./retrieval/retrieved_images.json](./retrieval/retrieved_images.json).
-You can also see the uncured 1000 retrieved results live at [🔍 Image Retrieval Results | LIVE!!!](https://thaoshibe.github.io/relsim/retrieve/index.html).
+You can also see the **uncurated 1000 retrieved results** live at [🔍 Image Retrieval Results | LIVE!!!](https://thaoshibe.github.io/relsim/retrieve/index.html).
 
 (Optional) If you want to use GPT-4o to evaluate the results, please put your GPT-4o API key in [./retrieval/gpt4o_config.yaml](./retrieval/gpt4o_config.yaml). Then run the GPT-4o evaluation code at the bottom of this file: [./retrieval/pipeline.sh](./retrieval/pipeline.sh). GPT-4o's answers may vary between sessions.
 
