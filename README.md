@@ -10,9 +10,12 @@
   <a href="https://github.com/thaoshibe/relsim/stargazers"><img src="https://img.shields.io/github/stars/thaoshibe/relsim?style=social" alt="GitHub stars"></a>
 </p>
 
-| ![](https://thaoshibe.github.io/relsim/images/peach-earth.png) |
-|:--:|
+| <img src="https://raw.githubusercontent.com/thaoshibe/thaoshibe.github.io/main/images/relsim.gif" height="250px">|
+|:--|
 | *We introduce a new visual similarity notion — relational visual similarity (relsim) — which captures the internal relational logic of a scene rather than its surface appearance.* |
+<!-- | | |
+|:--:|:--|
+| <img src="https://raw.githubusercontent.com/thaoshibe/thaoshibe.github.io/main/images/relsim.gif" height="300px"> | *We introduce a new visual similarity notion — relational visual similarity (relsim) — which captures the internal relational logic of a scene rather than its surface appearance.*| -->
 
 [**Relational Visual Similarity**](https://thaoshibe.github.io/relsim/) (arXiv 2025)  
 [Thao Nguyen](https://thaoshibe.github.io/)<sup>1</sup>, [Sicheng Mo](https://sichengmo.github.io/)<sup>3</sup>, [Krishna Kumar Singh](https://krsingh.cs.ucdavis.edu/)<sup>2</sup>, [Yilin Wang](https://yilinwang.org/)<sup>2</sup>, [Jing Shi](https://jshi31.github.io/jingshi/)<sup>2</sup>, [Nicholas Kolkin](https://scholar.google.com/citations?user=MqWYTj0AAAAJ&hl=en)<sup>2</sup>, [Eli Shechtman](https://scholar.google.com/citations?user=B_FTboQAAAAJ&hl=en)<sup>2</sup>, [Yong Jae Lee](https://pages.cs.wisc.edu/~yongjaelee/)<sup>1,2, ★</sup>, [Yuheng Li](https://yuheng-li.github.io/)<sup>1, ★</sup>
@@ -32,7 +35,7 @@ Our study shows that while relational similarity has a lot of real-world applica
 </details>
 ---
 
-🔗 Jump to:
+🔗 Table of Content:
 1. [🛠️ Quick Usage](#usage)
 1. [🫥 Anonymous Captioning Model](#anonymousmodel)
 1. [📁 Dataset](#data) | [live view](https://thaoshibe.github.io/relsim/data_viewer/index.html)
