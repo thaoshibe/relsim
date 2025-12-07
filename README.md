@@ -13,16 +13,12 @@
 | <img src="https://raw.githubusercontent.com/thaoshibe/thaoshibe.github.io/main/images/relsim.gif" height="250px">|
 |:--|
 | *We introduce a new visual similarity notion — relational visual similarity (relsim) — which captures the internal relational logic of a scene rather than its surface appearance.* |
-<!-- | | |
-|:--:|:--|
-| <img src="https://raw.githubusercontent.com/thaoshibe/thaoshibe.github.io/main/images/relsim.gif" height="300px"> | *We introduce a new visual similarity notion — relational visual similarity (relsim) — which captures the internal relational logic of a scene rather than its surface appearance.*| -->
 
-[**Relational Visual Similarity**](https://thaoshibe.github.io/relsim/) (arXiv 2025)  
-[Thao Nguyen](https://thaoshibe.github.io/)<sup>1</sup>, [Sicheng Mo](https://sichengmo.github.io/)<sup>3</sup>, [Krishna Kumar Singh](https://krsingh.cs.ucdavis.edu/)<sup>2</sup>, [Yilin Wang](https://yilinwang.org/)<sup>2</sup>, [Jing Shi](https://jshi31.github.io/jingshi/)<sup>2</sup>, [Nicholas Kolkin](https://scholar.google.com/citations?user=MqWYTj0AAAAJ&hl=en)<sup>2</sup>, [Eli Shechtman](https://scholar.google.com/citations?user=B_FTboQAAAAJ&hl=en)<sup>2</sup>, [Yong Jae Lee](https://pages.cs.wisc.edu/~yongjaelee/)<sup>1,2, ★</sup>, [Yuheng Li](https://yuheng-li.github.io/)<sup>1, ★</sup>
-<br>(★ Equal advising)
-<br> 1- University of Wisconsin–Madison | 2- Adobe Research | 3- UCLA
+| | |
+|:--|:--|
+| <img src="https://raw.githubusercontent.com/thaoshibe/thaoshibe.github.io/main/images/relsim.gif" height="250px"> | [**Relational Visual Similarity**](https://thaoshibe.github.io/relsim/) (arXiv 2025)  <br> [Thao Nguyen](https://thaoshibe.github.io/)<sup>1</sup>, [Sicheng Mo](https://sichengmo.github.io/)<sup>3</sup>, [Krishna Kumar Singh](https://krsingh.cs.ucdavis.edu/)<sup>2</sup>, [Yilin Wang](https://yilinwang.org/)<sup>2</sup>, [Jing Shi](https://jshi31.github.io/jingshi/)<sup>2</sup>, [Nicholas Kolkin](https://scholar.google.com/citations?user=MqWYTj0AAAAJ&hl=en)<sup>2</sup>, [Eli Shechtman](https://scholar.google.com/citations?user=B_FTboQAAAAJ&hl=en)<sup>2</sup>, [Yong Jae Lee](https://pages.cs.wisc.edu/~yongjaelee/)<sup>1,2, ★</sup>, [Yuheng Li](https://yuheng-li.github.io/)<sup>1, ★</sup> <br>(★ Equal advising) <br> 1- University of Wisconsin–Madison;  2- Adobe Research;  3- UCLA <br><br> > TL;DR: We introduce a new visual similarity notion: **relational visual similarity**, which complements traditional **attribute-based perceptual similarity** (e.g., LPIPS, CLIP, DINO). |
 
-> TL;DR: We introduce a new visual similarity notion: **relational visual similarity**, which complements traditional **attribute-based perceptual similarity** (e.g., LPIPS, CLIP, DINO).
+<!-- > TL;DR: We introduce a new visual similarity notion: **relational visual similarity**, which complements traditional **attribute-based perceptual similarity** (e.g., LPIPS, CLIP, DINO). -->
 
 <details>
 <summary> Click here to read <b>Abstract 📝</b></summary>
