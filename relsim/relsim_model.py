@@ -25,7 +25,7 @@ class QwenWithQueryToken(nn.Module):
             
             # Get the token id for our query token
             self.query_token_id = processor.tokenizer.convert_tokens_to_ids(special_token)
-            print(f"✅ Added query token '{special_token}' with id {self.query_token_id}")
+            print(f"Added query token '{special_token}' with id {self.query_token_id}")
         else:
             self.query_token_id = processor.tokenizer.convert_tokens_to_ids(special_token)
             print(f"⚠️ Query token '{special_token}' already exists with id {self.query_token_id}")
@@ -37,7 +37,7 @@ class QwenWithQueryToken(nn.Module):
         try:
             param = next(base_model.parameters())
             self.projection = self.projection.to(device=param.device, dtype=param.dtype)
-            print(f"✅ Projection head moved to device={param.device}, dtype={param.dtype}")
+            print(f"Projection head moved to device={param.device}, dtype={param.dtype}")
         except StopIteration:
             pass  # Model has no parameters, leave projection on CPU/float32
         

@@ -93,6 +93,14 @@ class ImageTextDataset(Dataset):
 
         except (OSError, Exception) as e:
             self.corrupted_count += 1
+            # Print out duplicated messages to catch attention :D
+            print("="*100)
+            print("="*100)
+            print("="*100)
+            print('ATTENTION ATTENTION ATTENTION')
+            print(f"Warning: Failed to load image {image_hash} from {image_path}: {e} (corrupted: {self.corrupted_count})")
+            print(f"Warning: Failed to load image {image_hash} from {image_path}: {e} (corrupted: {self.corrupted_count})")
+            print(f"Warning: Failed to load image {image_hash} from {image_path}: {e} (corrupted: {self.corrupted_count})")
             print(f"Warning: Failed to load image {image_hash} from {image_path}: {e} (corrupted: {self.corrupted_count})")
             # Return a black placeholder image if loading fails
             image = Image.new('RGB', (448, 448), color='black')

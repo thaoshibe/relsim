@@ -1,7 +1,7 @@
 # <img src="https://thaoshibe.github.io/relsim/images/favicon.png" height=35px> [Relational Visual Similarity](https://thaoshibe.github.io/relsim/)
 
 <p align="left">
-  <a href="PUT_ARXIV_LINK_HERE"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?logo=arxiv&logoColor=white" alt="arXiv"></a>
+  <a href="https://arxiv.org/abs/2512.07833"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?logo=arxiv&logoColor=white" alt="arXiv"></a>
   <a href="#citation"><img src="https://img.shields.io/badge/BibTeX-Citation-blue" alt="BibTeX"></a>
   <a href="https://huggingface.co/datasets/thaoshibe/anonymous-captions-114k"><img src="https://img.shields.io/badge/🤗-Dataset-yellow" alt="HuggingFace Dataset"></a>
   <a href="https://thaoshibe.github.io/relsim/"><img src="https://img.shields.io/badge/ProjectPage-up-green" alt="Project Page"></a>
@@ -21,7 +21,7 @@
   </tr>
 </table>
 
-<!-- > TL;DR: We introduce a new visual similarity notion: **relational visual similarity**, which complements traditional **attribute-based perceptual similarity** (e.g., LPIPS, CLIP, DINO). -->
+> TL;DR: We introduce a new visual similarity notion: **relational visual similarity**, which complements traditional **attribute-based perceptual similarity** (e.g., LPIPS, CLIP, DINO).
 
 <details>
 <summary> Click here to read <b>Abstract 📝</b></summary>
@@ -263,12 +263,23 @@ Cool, isn't it??
 ---
 ## BibTeX <a name="citation"></a>
 
-```bibtex
+<!-- ```bibtex
 @article{nguyen2025relsim,
   title={Relational Visual Similarity},
   author={Nguyen, Thao and Mo, Sicheng and Singh, Krishna Kumar and Wang, Yilin and Shi, Jing and Kolkin, Nicholas and Shechtman, Eli and Lee, Yong Jae and Li, Yuheng},
   journal={arXiv preprint arXiv:XXXX.XXXXX},
   year={2025}
+}
+``` -->
+```bibtex
+@misc{nguyen2025relationalvisualsimilarity,
+      title={Relational Visual Similarity}, 
+      author={Thao Nguyen and Sicheng Mo and Krishna Kumar Singh and Yilin Wang and Jing Shi and Nicholas Kolkin and Eli Shechtman and Yong Jae Lee and Yuheng Li},
+      year={2025},
+      eprint={2512.07833},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2512.07833}, 
 }
 ```
 
