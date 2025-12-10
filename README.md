@@ -47,7 +47,7 @@ Our study shows that while relational similarity has a lot of real-world applica
 
 This code is tested on Python 3.10: (i) **NVIDIA A100 80GB** (torch2.5.1+cu124) and (ii) **NVIDIA RTX A6000 48GB** (torch2.9.1+cu128).
 <br>
-Other hardware setup hasn't been tested, but it should still work.Please install pytorch and torchvision according to your machine configuration.
+Other hardware setup hasn't been tested, but it should still work. Please install pytorch and torchvision according to your machine configuration.
 
 ```bash
 conda create -n relsim python=3.10
@@ -261,7 +261,7 @@ Cool, isn't it??
 > All images are extracted from [LAION](https://laion.ai/) dataset. We do **NOT** own any of the images and we acknowledge the rights and contributions of the original creators. Please respect the authors of all images. These images are used for **research purposes only**.
 
 ---
-## BibTeX <a name="citation"></a>
+## 📄 BibTeX <a name="citation"></a>
 
 <!-- ```bibtex
 @article{nguyen2025relsim,
