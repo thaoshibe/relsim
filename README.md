@@ -3,7 +3,8 @@
 <p align="left">
   <a href="https://arxiv.org/abs/2512.07833"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?logo=arxiv&logoColor=white" alt="arXiv"></a>
   <a href="#citation"><img src="https://img.shields.io/badge/BibTeX-Citation-blue" alt="BibTeX"></a>
-  <a href="https://huggingface.co/datasets/thaoshibe/anonymous-captions-114k"><img src="https://img.shields.io/badge/🤗-Dataset-yellow" alt="HuggingFace Dataset"></a>
+  <a href="https://huggingface.co/datasets/thaoshibe/anonymous-captions-114k"><img src="https://img.shields.io/badge/🤗-dataset-yellow" alt="HuggingFace Dataset"></a>
+  <a href="https://huggingface.co/thaoshibe/relsim-qwenvl25-lora"><img src="https://img.shields.io/badge/🤗-relsim_model-yellow" alt="HuggingFace Model"></a>
   <a href="https://thaoshibe.github.io/relsim/"><img src="https://img.shields.io/badge/ProjectPage-up-green" alt="Project Page"></a>
   <a href="https://thaoshibe.github.io/relsim/data_viewer/index.html"><img src="https://img.shields.io/badge/Dataset-Viewer-green" alt="Dataset Live view"></a>
   <a href="https://thaoshibe.github.io/relsim/retrieve/index.html"><img src="https://img.shields.io/badge/ImageRetrieval-Results-green" alt="Image Retrieval Results"></a>
@@ -48,6 +49,7 @@ Our study shows that while relational similarity has a lot of real-world applica
 This code is tested on Python 3.10: (i) **NVIDIA A100 80GB** (torch2.5.1+cu124) and (ii) **NVIDIA RTX A6000 48GB** (torch2.9.1+cu128).
 <br>
 Other hardware setup hasn't been tested, but it should still work. Please install pytorch and torchvision according to your machine configuration.
+> You can also found `relsim` via HuggingFace: [🤗 thaoshibe/relsim-qwenvl25-lora](https://huggingface.co/thaoshibe/relsim-qwenvl25-lora)
 
 ```bash
 conda create -n relsim python=3.10
