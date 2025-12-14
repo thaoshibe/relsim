@@ -119,7 +119,15 @@ bash train.sh # this assume you have the dataset alrerady
 The pretrained anonymous caption model (Qwen-VL-2.5 7B) is provided in [./anonymous_caption](./anonymous_caption/).
 This model is trained on a limited number of seed groups and their corresponding generated captions (see the training data [here](https://thaoshibe.github.io/relsim/data_viewer/seed_groups.html)).
 
+> You can also find Anonymous Caption Model on HuggingFace: [🤗 thaoshibe/relsim-anonymous-caption-qwen25vl-lora](https://huggingface.co/thaoshibe/relsim-anonymous-caption-qwen25vl-lora).
+
+Script to run Anonymous Caption Model (with HuggingFace) is provided at [./anonymous_caption/anonymous_caption_hf.py](./anonymous_caption/anonymous_caption_hf.py).
+
+
 ```bash
+# run with huggingface-model
+python anonymous_caption/anonymous_caption_hf.py
+
 # run on default test image (mam.jpg)
 python anonymous_caption/anonymous_caption.py
 
