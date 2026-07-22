@@ -8,3 +8,4 @@ tqdm==4.67.1
 transformers==4.57.3
 torch
 torchvision
+pytest

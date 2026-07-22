@@ -76,6 +76,30 @@ similarity = model(img1, img2)  # Returns similarity score (higher = more simila
 print(f"relational similarity score: {similarity:.3f}")
 ```
 
+You can also extract embeddings directly, for a single image or a batch (like CLIP/DINO).
+`embed` accepts one image or a list and returns an L2-normalized tensor of shape `[N, 384]`
+from a single batched forward pass:
+
+```python
+from relsim.relsim_score import relsim
+from PIL import Image
+
+model, preprocess = relsim(pretrained=True, checkpoint_dir="thaoshibe/relsim-qwenvl25-lora")
+
+# Single image -> [1, 384]
+emb = model.embed(preprocess(Image.open("image_path_1")))
+
+# Batch of images -> [N, 384]
+paths = ["image_path_1", "image_path_2", "image_path_3"]
+embs = model.embed(preprocess([Image.open(p) for p in paths]))
+print(embs.shape)  # torch.Size([3, 384])
+
+# For very large / high-res inputs, cap resolution and/or chunk to avoid OOM:
+embs = model.embed(preprocess(images), max_image_size=448, micro_batch_size=32)
+```
+
+RelSim is image-only — there is no text-embedding counterpart to CLIP's `get_text_features`.
+
 Or you can run [`python test.py`](test.py) for a quick test. Here is example results. All below images can be found in [this folder](./anonymous_caption/):
 | reference image | test image 1  | test image 2 | test image 3 | test image 4 | test image 5 | test image 6 |
 |--------------|-----------------|------------|------------|------------|------------|------------|
